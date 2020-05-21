@@ -1,0 +1,16 @@
+{
+  "name": "musala-ecommerce-backend",
+  "version": "1.0.0",
+  "description": "A simple e-commerce project.",
+  "main": "index.js",
+  "repository": "https://github.com/pedegago/musala-ecommerce-backend.git",
+  "author": "Pablo David Gago Ballester",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./src/app.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
