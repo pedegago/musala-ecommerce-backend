@@ -1,20 +1,22 @@
-const express = require("express");
-const cors = require("cors");
-
-const app = express();
-
 const PORT = process.env.PORT || 3001;
 
-app.disable("x-powered-by");
-app.use(cors({ origin: "*" }));
+const express = require("express");
+
+const app = express();
 app.use(express.json());
+app.disable("x-powered-by");
 
-// app.use("/api/gateways", gatewayRoutes);
-// app.use("/api/gateways/:serial/devices", getGatewayByParam, deviceRoutes);
+const cors = require("cors");
+app.use(cors({ origin: "*" }));
 
-app.get("/", (req, res) => {
-    res.json({ message: "Welcome to Musala application." });
-});
+const middlewares = require("../middlewares/auth");
+app.use(middlewares.header);
+
+require("./models").init();
+
+require("./routes/auth").routes(app);
+
+require("./routes/store").routes(app);
 
 app.listen(PORT, () => {
     console.info("👍 Server started on port", PORT);
