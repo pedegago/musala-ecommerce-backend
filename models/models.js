@@ -16,7 +16,7 @@ const product = mongoose.model(
         bestseller: Boolean,
         on_sale: Boolean,
         description: String,
-        price: Float32Array,
+        price: Number,
         image: String
     })
 );

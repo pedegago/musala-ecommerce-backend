@@ -5,7 +5,7 @@ const Order = db.order;
 const Product = db.product;
 
 const orders = (req, res) => {
-    res.json(Order.find());
+    res.json(Order.find({ email: req.body.customer }));
 };
 
 const addOrder = (req, res) => {
