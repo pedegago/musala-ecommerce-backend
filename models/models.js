@@ -23,20 +23,23 @@ const product = mongoose.model(
 
 const order = mongoose.model(
     "Order",
-    new mongoose.Schema({
-        email: String,
-        fullname: String,
-        address: String,
-        state: String,
-        city: String,
-        zip: String,
-        products: [
-            {
-                type: mongoose.ObjectId,
-                ref: "Product"
-            }
-        ]
-    })
+    new mongoose.Schema(
+        {
+            email: String,
+            fullname: String,
+            address: String,
+            state: String,
+            city: String,
+            zip: String,
+            products: [
+                {
+                    type: mongoose.ObjectId,
+                    ref: "Product"
+                }
+            ]
+        },
+        { timestamps: true }
+    )
 );
 
 module.exports = { customer, product, order };

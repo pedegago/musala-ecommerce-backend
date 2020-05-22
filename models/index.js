@@ -30,8 +30,6 @@ const init = () => {
             }
         )
         .then(() => {
-            console.log("🔌 Connected & populating initial data.");
-
             Customer.deleteMany({});
 
             Order.deleteMany({});
@@ -41,6 +39,8 @@ const init = () => {
             new Customer(config.user).save();
 
             new Product(config.products).save();
+
+            console.log("🔌 Connected & populated initial data.");
         });
 };
 
