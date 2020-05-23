@@ -21,14 +21,10 @@ const init = () => {
     console.log("🔌 Starting connection to database.");
 
     return db.mongoose
-        .connect(
-            // "mongodb+srv://musalasoft:Musalas0ft@cluster0-fiji7.mongodb.net/test?retryWrites=true&w=majority",
-            `mongodb://${config.db.HOST}:${config.db.PORT}/${config.db.DB}`,
-            {
-                useNewUrlParser: true,
-                useUnifiedTopology: true
-            }
-        )
+        .connect(config.db, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
         .then(() => {
             Order.deleteMany().then(() => {});
 

@@ -1,12 +1,12 @@
 const bcrypt = require("bcryptjs");
 
-const db = {
-    USER: "musalasoft",
-    PASSWORD: "Musalas0ft",
-    HOST: "127.0.0.1",
-    PORT: 27017,
-    DB: "musalasoft_db"
-};
+const ASSETS_URL = "https://dev-assets.opencarwash.com/musalasoft/products";
+
+const db =
+    // process.env.NODE_ENV === "production"
+    true
+        ? "mongodb+srv://musalasoft:Musalas0ft@cluster0-fiji7.mongodb.net/test?retryWrites=true&w=majority"
+        : "mongodb://127.0.0.1:27017/musala_db";
 
 const user = {
     fullname: "Musala Soft",
@@ -14,11 +14,9 @@ const user = {
     password: bcrypt.hashSync("Musalas0ft", 8)
 };
 
-const ASSETS_URL = "https://dev-assets.opencarwash.com/musalasoft/products";
-
 const products = [
     {
-        name: "😀 Big Smile",
+        name: "Big Smile",
         bestseller: true,
         on_sale: false,
         price: 5.21,
@@ -29,7 +27,7 @@ const products = [
         thumbnail: `${ASSETS_URL}/big-smile-thumbnail.jpg`
     },
     {
-        name: "☕ Coffee Cup",
+        name: "Coffee Cup",
         best_seller: false,
         on_sale: true,
         price: 5.21,
@@ -40,7 +38,7 @@ const products = [
         thumbnail: `${ASSETS_URL}/coffee-cup-thumbnail.jpg`
     },
     {
-        name: "☀ Good Morning",
+        name: "Good Morning",
         bestseller: true,
         on_sale: true,
         price: 5.21,
@@ -51,7 +49,7 @@ const products = [
         thumbnail: `${ASSETS_URL}/good-morning-thumbnail.jpg`
     },
     {
-        name: "🎨 Painting",
+        name: "Painting",
         bestseller: true,
         on_sale: false,
         price: 5.21,
@@ -62,7 +60,7 @@ const products = [
         thumbnail: `${ASSETS_URL}/painting-thumbnail.jpg`
     },
     {
-        name: "😎 Sun Glasses",
+        name: "Sun Glasses",
         best_seller: false,
         on_sale: true,
         price: 5.21,
@@ -73,7 +71,7 @@ const products = [
         thumbnail: `${ASSETS_URL}/sun-glasses-thumbnail.jpg`
     },
     {
-        name: "🆗 Giant OK",
+        name: "Giant OK",
         bestseller: true,
         on_sale: true,
         price: 5.21,
