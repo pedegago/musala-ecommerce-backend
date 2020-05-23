@@ -3,9 +3,8 @@ const bcrypt = require("bcryptjs");
 const ASSETS_URL = "https://dev-assets.opencarwash.com/musalasoft/products";
 
 const db =
-    // process.env.NODE_ENV === "production"
-    true
-        ? "mongodb+srv://musalasoft:Musalas0ft@cluster0-fiji7.mongodb.net/test?retryWrites=true&w=majority"
+    process.env.NODE_ENV === "production"
+        ? "mongodb+srv://musalasoft:Musalas0ft@cluster0-fiji7.mongodb.net/musala_db?retryWrites=true&w=majority"
         : "mongodb://127.0.0.1:27017/musala_db";
 
 const user = {
