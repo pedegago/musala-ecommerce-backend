@@ -1,12 +1,15 @@
 const bcrypt = require("bcryptjs");
 
 const db = {
-    HOST: "localhost",
+    USER: "musalasoft",
+    PASSWORD: "Musalas0ft",
+    HOST: "127.0.0.1",
     PORT: 27017,
     DB: "musalasoft_db"
 };
 
 const user = {
+    fullname: "Musala Soft",
     username: "musala.soft@example.com",
     password: bcrypt.hashSync("Musalas0ft", 8)
 };
@@ -15,7 +18,6 @@ const ASSETS_URL = "https://dev-assets.opencarwash.com/musalasoft/products";
 
 const products = [
     {
-        id: "1",
         name: "😀 Big Smile",
         bestseller: true,
         on_sale: false,
@@ -27,7 +29,6 @@ const products = [
         thumbnail: `${ASSETS_URL}/big-smile-thumbnail.jpg`
     },
     {
-        id: "2",
         name: "☕ Coffee Cup",
         best_seller: false,
         on_sale: true,
@@ -39,7 +40,6 @@ const products = [
         thumbnail: `${ASSETS_URL}/coffee-cup-thumbnail.jpg`
     },
     {
-        id: "3",
         name: "☀ Good Morning",
         bestseller: true,
         on_sale: true,
@@ -51,7 +51,6 @@ const products = [
         thumbnail: `${ASSETS_URL}/good-morning-thumbnail.jpg`
     },
     {
-        id: "4",
         name: "🎨 Painting",
         bestseller: true,
         on_sale: false,
@@ -63,7 +62,6 @@ const products = [
         thumbnail: `${ASSETS_URL}/painting-thumbnail.jpg`
     },
     {
-        id: "5",
         name: "😎 Sun Glasses",
         best_seller: false,
         on_sale: true,
@@ -75,7 +73,6 @@ const products = [
         thumbnail: `${ASSETS_URL}/sun-glasses-thumbnail.jpg`
     },
     {
-        id: "6",
         name: "🆗 Giant OK",
         bestseller: true,
         on_sale: true,

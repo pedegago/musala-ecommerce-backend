@@ -2,18 +2,15 @@ const mongoose = require("mongoose");
 
 mongoose.Promise = global.Promise;
 
-const db = {};
-
-db.mongoose = mongoose;
-
-db.customer = require("./models").customer;
-
-db.order = require("./models").order;
-
-db.product = require("./models").product;
+const db = {
+    mongoose,
+    customer: require("./models").customer,
+    order: require("./models").order,
+    product: require("./models").product
+};
 
 const init = () => {
-    const config = require("./config/db");
+    const config = require("../config/store");
 
     const Customer = db.customer;
 
@@ -21,8 +18,11 @@ const init = () => {
 
     const Product = db.product;
 
-    db.mongoose
+    console.log("🔌 Starting connection to database.");
+
+    return db.mongoose
         .connect(
+            // "mongodb+srv://musalasoft:Musalas0ft@cluster0-fiji7.mongodb.net/test?retryWrites=true&w=majority",
             `mongodb://${config.db.HOST}:${config.db.PORT}/${config.db.DB}`,
             {
                 useNewUrlParser: true,
@@ -30,17 +30,21 @@ const init = () => {
             }
         )
         .then(() => {
-            Customer.deleteMany({});
+            Order.deleteMany().then(() => {});
 
-            Order.deleteMany({});
+            Customer.deleteMany().then(() => {
+                new Customer(config.user).save();
+            });
 
-            Product.deleteMany({});
-
-            new Customer(config.user).save();
-
-            new Product(config.products).save();
+            Product.deleteMany().then(() => {
+                Product.insertMany(config.products);
+            });
 
             console.log("🔌 Connected & populated initial data.");
+        })
+        .catch(e => {
+            console.log(e);
+            throw Error("❌ Error connecting to database.");
         });
 };
 

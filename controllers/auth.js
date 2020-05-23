@@ -27,6 +27,7 @@ const signin = (req, res) => {
         const token = jwt.sign({ id: user.id }, config.secret);
 
         res.json({
+            fullname: user.fullname,
             username: user.username,
             accessToken: token
         });

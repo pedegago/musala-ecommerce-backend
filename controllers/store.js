@@ -1,11 +1,13 @@
-const db = require("./models").db;
+const db = require("../models").db;
 
 const Order = db.order;
 
 const Product = db.product;
 
 const orders = (req, res) => {
-    res.json(Order.find({ email: req.body.customer }));
+    Order.find({ email: req.query.customer }).then(items => {
+        res.json(items);
+    });
 };
 
 const addOrder = (req, res) => {
@@ -21,7 +23,9 @@ const addOrder = (req, res) => {
 };
 
 const products = (req, res) => {
-    res.json(Product.find());
+    Product.find().then(items => {
+        res.json(items);
+    });
 };
 
 module.exports = {

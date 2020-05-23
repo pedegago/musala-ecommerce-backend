@@ -9,15 +9,18 @@ app.disable("x-powered-by");
 const cors = require("cors");
 app.use(cors({ origin: "*" }));
 
-const middlewares = require("../middlewares/auth");
+const middlewares = require("./middlewares/auth");
 app.use(middlewares.header);
 
-require("./models").init();
+require("./models")
+    .init()
+    .then(() => {
+        require("./routes/auth").routes(app);
 
-require("./routes/auth").routes(app);
+        require("./routes/store").routes(app);
 
-require("./routes/store").routes(app);
-
-app.listen(PORT, () => {
-    console.info("👍 Server started on port", PORT);
-});
+        app.listen(PORT, () => {
+            console.info("👍 Server started on port", PORT);
+        });
+    })
+    .catch(e => console.info(e.message));

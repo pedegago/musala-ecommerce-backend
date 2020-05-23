@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const customer = mongoose.model(
     "Customer",
     new mongoose.Schema({
+        fullname: String,
         username: String,
         password: String
     })
@@ -17,7 +18,8 @@ const product = mongoose.model(
         on_sale: Boolean,
         description: String,
         price: Number,
-        image: String
+        image: String,
+        thumbnail: String
     })
 );
 
@@ -31,6 +33,7 @@ const order = mongoose.model(
             state: String,
             city: String,
             zip: String,
+            total: Number,
             products: [
                 {
                     type: mongoose.ObjectId,
